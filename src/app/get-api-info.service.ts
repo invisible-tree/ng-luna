@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class GetApiInfoService {
-
+  
   constructor( public network: HttpClient ) {
   }
 

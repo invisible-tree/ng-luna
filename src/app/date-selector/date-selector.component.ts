@@ -1,48 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { GetApiInfoService } from '../get-api-info.service';
+import {FormControl} from '@angular/forms';
+
 import { MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as moment from 'moment';
-
+import { transformMenu } from '@angular/material';
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-date-selector',
   templateUrl: './date-selector.component.html',
   styleUrls: ['./date-selector.component.css'],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ]
 })
 export class DateSelectorComponent implements OnInit {
-
-  today = new Date();
-  cleanToday;
-
+  date = new FormControl(moment());
+  today = moment().format('MM/DD/YYYY');
   recentPhase;
 
   constructor( private GetApiInfoService: GetApiInfoService ) {
-    this.cleanToday = this.transformDate( this.today );
-    this.GetApiInfoService.apiCall( this.cleanToday )
+    this.GetApiInfoService.apiCall( this.today )
       .subscribe(x => this.recentPhase = x);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
-  addEvent(type: string, dateSelected: MatDatepickerInputEvent<Date>) {
-    console.log(type + ' - - ' + dateSelected);
-    const cleanDate = this.transformDate(dateSelected);
-    this.GetApiInfoService.apiCall( cleanDate )
+  addEvent(_value) {
+    const dateToSend = this.transformDate(_value);
+    this.GetApiInfoService.apiCall( dateToSend )
       .subscribe(x => this.recentPhase = x);
   }
 
   transformDate(_date) {
-    const year = _date.getFullYear();
-    let month = _date.getMonth() + 1;
-    let day = _date.getDate();
+    const year = _date._i.year;
+    let month = _date._i.month;
+    let day = _date._i.date;
 
     if (day < 10) {
       day = '0' + day;
@@ -51,7 +59,6 @@ export class DateSelectorComponent implements OnInit {
       month = '0' + month;
     }
     return month + '/' + day + '/' + year;
-    // return moment(_date, 'MM/DD/YYYY');
   }
 
 }
