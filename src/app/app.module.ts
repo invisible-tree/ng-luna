@@ -40,8 +40,8 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
-import {CdkTableModule} from '@angular/cdk/table';
-
+import { CdkTableModule } from '@angular/cdk/table';
+import 'hammerjs';
 @NgModule({
   exports: [
     CdkTableModule,

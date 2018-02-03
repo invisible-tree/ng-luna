@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GetApiInfoService } from '../get-api-info.service';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 import { MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 import { transformMenu } from '@angular/material';
 export const MY_FORMATS = {
@@ -33,10 +33,14 @@ export class DateSelectorComponent implements OnInit {
   date = new FormControl(moment());
   today = moment().format('MM/DD/YYYY');
   recentPhase;
+  percent;
+  moonPhase;
 
   constructor( private GetApiInfoService: GetApiInfoService ) {
     this.GetApiInfoService.apiCall( this.today )
-      .subscribe(x => this.recentPhase = x);
+    .do(x => console.log(x.phase))
+
+      .subscribe( x => this.moonPhase = x );
   }
 
   ngOnInit() {  }
@@ -44,12 +48,13 @@ export class DateSelectorComponent implements OnInit {
   addEvent(_value) {
     const dateToSend = this.transformDate(_value);
     this.GetApiInfoService.apiCall( dateToSend )
-      .subscribe(x => this.recentPhase = x);
+      .do(x => console.log(x))
+      .subscribe( x => this.moonPhase = x );
   }
 
   transformDate(_date) {
     const year = _date._i.year;
-    let month = _date._i.month;
+    let month = _date._i.month + 1;
     let day = _date._i.date;
 
     if (day < 10) {

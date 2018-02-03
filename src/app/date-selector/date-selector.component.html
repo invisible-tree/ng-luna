@@ -4,9 +4,10 @@
   </form> -->
 
   <mat-form-field>
-    <input matInput [matDatepicker]="myDatepicker" placeholder="{{cleanToday}}" (dateInput)="addEvent($event.value)" [formControl]="date">
+    <input matInput [matDatepicker]="myDatepicker"  (dateInput)="addEvent($event.value)" [formControl]="date">
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #myDatepicker touchUi="true"></mat-datepicker>
   </mat-form-field>
 
-  <div>{{recentPhase}}</div>
+  <div>{{moonPhase?.phase}}</div>
+  <div>{{moonPhase?.percent}}</div>
