@@ -22,7 +22,7 @@ export const MY_FORMATS = {
 @Component({
   selector: 'app-date-selector',
   templateUrl: './date-selector.component.html',
-  styleUrls: ['./date-selector.component.css'],
+  styleUrls: ['./date-selector.component.scss'],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
