@@ -1,7 +1,7 @@
-  <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f.value.date)">
-    <input type="date" name ="date" ngModel>
-    <button type="submit">Enviar</button>
-  </form> -->
+
+
+  <div class="phase">{{moonPhase?.phase}}</div>
+  <div>{{moonPhase?.percent}}</div>
 
   <mat-form-field>
     <input matInput [matDatepicker]="myDatepicker"  (dateInput)="addEvent($event.value)" [formControl]="date">
@@ -9,5 +9,4 @@
     <mat-datepicker #myDatepicker touchUi="true"></mat-datepicker>
   </mat-form-field>
 
-  <div class="phase">{{moonPhase?.phase}}</div>
-  <div>{{moonPhase?.percent}}</div>
+

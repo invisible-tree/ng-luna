@@ -41,7 +41,9 @@ import {
 import { AppComponent } from './app.component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { CdkTableModule } from '@angular/cdk/table';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import 'hammerjs';
+import { LunaImageComponent } from './luna-image/luna-image.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -76,7 +78,7 @@ import 'hammerjs';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ]
+  ],
 })
 export class DemoMaterialModule {}
 
@@ -84,7 +86,8 @@ export class DemoMaterialModule {}
 @NgModule({
   declarations: [
     AppComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    LunaImageComponent
   ],
   exports: [
     MatNativeDateModule
@@ -97,9 +100,10 @@ export class DemoMaterialModule {}
     BrowserAnimationsModule,
     DemoMaterialModule,
     MatNativeDateModule,
+ //   NgbModule
   ],
   providers: [
-    CalculatePhaseService,
+    // CalculatePhaseService,
     GetApiInfoService
   ],
   bootstrap: [AppComponent]
