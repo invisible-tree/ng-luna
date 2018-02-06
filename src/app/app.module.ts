@@ -44,6 +44,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import 'hammerjs';
 import { LunaImageComponent } from './luna-image/luna-image.component';
+import { ShowPhaseComponent } from './show-phase/show-phase.component';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -87,7 +88,8 @@ export class DemoMaterialModule {}
   declarations: [
     AppComponent,
     DateSelectorComponent,
-    LunaImageComponent
+    LunaImageComponent,
+    ShowPhaseComponent
   ],
   exports: [
     MatNativeDateModule

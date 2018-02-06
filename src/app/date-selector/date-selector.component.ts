@@ -39,8 +39,7 @@ export class DateSelectorComponent implements OnInit {
   constructor( private GetApiInfoService: GetApiInfoService ) {
     this.GetApiInfoService.apiCall( this.today )
     .do(x => console.log(x.phase))
-
-      .subscribe( x => this.moonPhase = x );
+    .subscribe( x => this.moonPhase = x );
   }
 
   ngOnInit() {  }

@@ -16,10 +16,8 @@ export class GetApiInfoService {
 
   apiCall(_date) {
     console.log(_date);
-    // return this.network.get('http://api.usno.navy.mil/moon/phase?date=' + _date + '&nump=1')
-    //   .map(x => x = x.phasedata[0].phase);
 
-    return this.network.get('http://api.usno.navy.mil/rstt/oneday?date=' + _date + '&coords=' + this.lat + ',' + this.lon + '&tz=1')
+    return this.network.get<any>('http://api.usno.navy.mil/rstt/oneday?date=' + _date + '&coords=' + this.lat + ',' + this.lon + '&tz=1')
       .map ( x =>
         x = {
         'phase': x.curphase ? x.curphase : x.closestphase.phase,
