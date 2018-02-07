@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GetApiInfoService } from '../get-api-info.service';
 import { FormControl } from '@angular/forms';
 
@@ -7,6 +7,8 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 import { transformMenu } from '@angular/material';
+import { LunaImageComponent } from '../luna-image/luna-image.component';
+import { ShowPhaseComponent } from '../show-phase/show-phase.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -36,10 +38,14 @@ export class DateSelectorComponent implements OnInit {
   percent;
   moonPhase;
 
+  @Input() showPhase: ShowPhaseComponent;
+
   constructor( private GetApiInfoService: GetApiInfoService ) {
     this.GetApiInfoService.apiCall( this.today )
-    .do(x => console.log(x.phase))
+    // .do(x => console.log(x.phase))
     .subscribe( x => this.moonPhase = x );
+    // this.showPhase.changePhase();
+    // this.showPhase.changePhase(this.moonPhase);
   }
 
   ngOnInit() {  }
@@ -47,8 +53,9 @@ export class DateSelectorComponent implements OnInit {
   addEvent(_value) {
     const dateToSend = this.transformDate(_value);
     this.GetApiInfoService.apiCall( dateToSend )
-      .do(x => console.log(x))
+      // .do(x => console.log(x))
       .subscribe( x => this.moonPhase = x );
+      this.showPhase.changePhase();
   }
 
   transformDate(_date) {

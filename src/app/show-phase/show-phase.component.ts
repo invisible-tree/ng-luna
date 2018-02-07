@@ -7,13 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ShowPhaseComponent implements OnInit {
 
-  @Input() moonPhase;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {
-    console.log(this.moonPhase);
   }
 
+  changePhase(_moonPhase?) {
+    console.log('changing phase');
+  }
 }
