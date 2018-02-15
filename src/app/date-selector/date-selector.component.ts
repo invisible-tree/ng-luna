@@ -37,25 +37,22 @@ export class DateSelectorComponent implements OnInit {
   recentPhase;
   percent;
   moonPhase;
-
-  @Input() showPhase: ShowPhaseComponent;
+  showPhase = new ShowPhaseComponent();
+  // @Input() showPhase: ShowPhaseComponent;
 
   constructor( private GetApiInfoService: GetApiInfoService ) {
-    this.GetApiInfoService.apiCall( this.today )
-    // .do(x => console.log(x.phase))
-    .subscribe( x => this.moonPhase = x );
-    // this.showPhase.changePhase();
-    // this.showPhase.changePhase(this.moonPhase);
+    this.sendPhase(this.today);
   }
 
   ngOnInit() {  }
 
+  sendPhase(date) {
+    this.GetApiInfoService.apiCall( date ).subscribe( x => this.showPhase.changePhase(x));
+  }
+
   addEvent(_value) {
     const dateToSend = this.transformDate(_value);
-    this.GetApiInfoService.apiCall( dateToSend )
-      // .do(x => console.log(x))
-      .subscribe( x => this.moonPhase = x );
-      this.showPhase.changePhase();
+    this.GetApiInfoService.apiCall( dateToSend ).subscribe( x => this.showPhase.changePhase(x));
   }
 
   transformDate(_date) {

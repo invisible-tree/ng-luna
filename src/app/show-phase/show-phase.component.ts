@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-show-phase',
@@ -6,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./show-phase.component.scss']
 })
 export class ShowPhaseComponent implements OnInit {
-
+  today = moment().format('MM/DD/YYYY');
+  moonPhase;
 
   constructor() {
   }
@@ -14,7 +16,12 @@ export class ShowPhaseComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePhase(_moonPhase?) {
-    console.log('changing phase');
+  public changePhase(_moonPhase) {
+    // console.log('change phase: ' + _moonPhase.phase);
+    this.moonPhase = {
+      'phase': _moonPhase.phase,
+      'percent': _moonPhase.percent
+    };
+    console.log(this.moonPhase.phase);
   }
 }

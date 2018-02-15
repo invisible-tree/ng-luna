@@ -1,3 +1,4 @@
+import { ShowPhaseComponent } from './show-phase/show-phase.component';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -11,11 +12,14 @@ export class GetApiInfoService {
   lat = 40.489354;
   lon = -3.682746;
 
+  showPhase = new ShowPhaseComponent();
+
   constructor( public network: HttpClient ) {
   }
 
   apiCall(_date) {
     console.log(_date);
+    // this.showPhase.changePhase(_date);
 
     return this.network.get<any>('http://api.usno.navy.mil/rstt/oneday?date=' + _date + '&coords=' + this.lat + ',' + this.lon + '&tz=1')
       .map ( x =>
@@ -24,6 +28,7 @@ export class GetApiInfoService {
         'percent': x.fracillum ? x.fracillum : this.calculatePercent(x.closestphase.phase)
         }
       );
+     // .subscribe( x => this.showPhase.changePhase(x));
   }
 
   calculatePercent(_phase) {
