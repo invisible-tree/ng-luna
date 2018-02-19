@@ -27,7 +27,7 @@ export class GetApiInfoService {
         'phase': x.curphase ? x.curphase : x.closestphase.phase,
         'percent': x.fracillum ? x.fracillum : this.calculatePercent(x.closestphase.phase)
         }
-      );
+      ).do( x => console.log('Service: ', x));
 
   }
 

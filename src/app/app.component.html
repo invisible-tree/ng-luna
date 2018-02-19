@@ -12,6 +12,6 @@
           <div class="phase-title">{{moonPhase?.phase}}</div>
           <div class="visibility"><span>{{moonPhase?.percent}} VISIBILITY</span></div>
         </div>
-      <app-date-selector></app-date-selector>
+      <app-date-selector (changePhaseEmit)="changeThePhase($event)"></app-date-selector>
     </div>
   </div>
