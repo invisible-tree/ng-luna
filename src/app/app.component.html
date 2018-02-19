@@ -1,10 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col luna-img">
-      <app-luna-image></app-luna-image>
+
+      <img src="{{imageSwitch()}}">
+
     </div>
     <div class="col">
-      <app-show-phase></app-show-phase>
+
+      <div class="container-phase">
+          <div class="slogan">The moon today</div>
+          <div class="phase-title">{{moonPhase?.phase}}</div>
+          <div class="visibility"><span>{{moonPhase?.percent}} VISIBILITY</span></div>
+        </div>
       <app-date-selector></app-date-selector>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { GetApiInfoService } from '../get-api-info.service';
 import { FormControl } from '@angular/forms';
 
@@ -37,22 +37,26 @@ export class DateSelectorComponent implements OnInit {
   recentPhase;
   percent;
   moonPhase;
-  showPhase = new ShowPhaseComponent();
+  // showPhase = new ShowPhaseComponent();
   // @Input() showPhase: ShowPhaseComponent;
+  // @Output() changePhase: EventEmitter<any> = new EventEmitter();
 
-  constructor( private GetApiInfoService: GetApiInfoService ) {
-    this.sendPhase(this.today);
+  constructor( private getApiInfoService: GetApiInfoService ) {
+    // this.sendPhase(this.today);
   }
 
   ngOnInit() {  }
 
-  sendPhase(date) {
-    this.GetApiInfoService.apiCall( date ).subscribe( x => this.showPhase.changePhase(x));
-  }
+  // sendPhase(date) {
+  //   this.getApiInfoService.apiCall( date ); // .subscribe( x => this.showPhase.changePhase(x));
+  // }
 
   addEvent(_value) {
     const dateToSend = this.transformDate(_value);
-    this.GetApiInfoService.apiCall( dateToSend ).subscribe( x => this.showPhase.changePhase(x));
+    // this.getApiInfoService.apiCall( dateToSend ); // .subscribe( x => this.showPhase.changePhase(x));
+
+    // this.changePhase.emit(dateToSend);
+    // this.showPhase.changePhase(dateToSend);
   }
 
   transformDate(_date) {
