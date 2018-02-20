@@ -14,18 +14,10 @@ export class AppComponent {
   moonPhase;
 
   constructor(private getApiInfoService: GetApiInfoService) {
-    // this.getApiInfoService.apiCall( this.today )
-    //   .subscribe( x => this.moonPhase = x,
-    //   err => console.log('error', err),
-    //   () => console.log('finished') );
     this.changeThePhase(this.today);
     console.log('today, showphaseComp: ', this.today, ' - Phase: ', this.moonPhase);
   }
 
-  // sendPhase(date) {
-  //   this.getApiInfoService.apiCall( date ).subscribe( x => this.moonPhase = x );
-  //   console.log('today, showphaseComp: ', date, ' - Phase: ', this.moonPhase);
-  // }
   changeThePhase(date) {
     this.getApiInfoService.apiCall( date )
       .subscribe( x => this.moonPhase = x,

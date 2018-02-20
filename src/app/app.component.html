@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col luna-img">
-
-      <img src="{{imageSwitch()}}">
-
+      <div class="luna">
+        <img src="{{imageSwitch()}}">
+      </div>
+      <div class="date-selector">
+        <!-- <span>Select another date</span> -->
+        <app-date-selector (changePhaseEmit)="changeThePhase($event)"></app-date-selector>
+      </div>
     </div>
     <div class="col">
 
@@ -12,6 +16,6 @@
           <div class="phase-title">{{moonPhase?.phase}}</div>
           <div class="visibility"><span>{{moonPhase?.percent}} VISIBILITY</span></div>
         </div>
-      <app-date-selector (changePhaseEmit)="changeThePhase($event)"></app-date-selector>
+      
     </div>
   </div>
